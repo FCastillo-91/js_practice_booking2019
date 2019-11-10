@@ -1,6 +1,5 @@
 function capitalize(word) {
   if (word === undefined) throw new Error("word is required");
-  console.log({word:word[0]})
 
   const firstCharCap = word [0].toUpperCase() + word.slice(1)
 
@@ -70,7 +69,6 @@ function reverseWord(word) {
 }
 
 function reverseAllWords(words) {
-  console.log(typeof words)
   
   if (words === undefined) throw new Error("words is required");
 
@@ -86,7 +84,20 @@ function reverseAllWords(words) {
 
 function countLinuxUsers(users) {
   if (users === undefined) throw new Error("users is required");
-  // Add your code here!
+  
+  let numOfLinuxUsers = 0;
+ 
+  users.forEach(function (person) {
+    if (person.type === "Linux") {
+      numOfLinuxUsers++
+    }  
+  }
+  )
+  return numOfLinuxUsers ++
+
+  // forEach user if users.type === Linux 
+  // count++
+  //return count
 }
 
 function getMeanScore(scores) {
