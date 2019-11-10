@@ -70,8 +70,18 @@ function reverseWord(word) {
 }
 
 function reverseAllWords(words) {
+  console.log(typeof words)
+  
   if (words === undefined) throw new Error("words is required");
-  // Add your code here!
+
+    let phrases = [];
+
+    for (let i = 0; i < words.length; i++) {
+      const listOfWords = words[i]
+      const reverseWords = listOfWords.split("").reverse().join("");
+      phrases.push(reverseWords)
+    }
+    return phrases  
 }
 
 function countLinuxUsers(users) {
