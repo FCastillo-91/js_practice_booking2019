@@ -94,15 +94,22 @@ function countLinuxUsers(users) {
   }
   )
   return numOfLinuxUsers ++
-
-  // forEach user if users.type === Linux 
-  // count++
-  //return count
 }
 
 function getMeanScore(scores) {
   if (scores === undefined) throw new Error("scores is required");
-  // Add your code here!
+
+  var sum = 0;
+  var count = scores.length;
+  for (var i = 0; i < count; i++) {
+    sum = sum + scores[i];
+  }
+  const mean = sum / count
+  if (sum % count === 0) {
+    return mean
+  } else {
+    return Number(mean.toFixed(2))
+  }
 }
 
 function simpleFizzBuzz(n) {
