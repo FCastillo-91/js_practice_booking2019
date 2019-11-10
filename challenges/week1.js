@@ -19,22 +19,30 @@ function generateInitials(firstName, lastName) {
   return Initials
 }
 
+function priceFormat (num) {
+  if (num % 1 === 0) {
+    return num;
+  } else {
+    return parseFloat(num.toFixed(2));
+  }
+}
+
+
+
 function addVAT(originalPrice, vatRate) {
   if (originalPrice === undefined) throw new Error("originalPrice is requied");
   if (vatRate === undefined) throw new Error("vatRate is required");
   
   const totalPrice = originalPrice + (originalPrice/ 100 * vatRate) 
-  if (totalPrice % 1 === 0) {
-      return totalPrice
-    } else {
-      return parseFloat(totalPrice.toFixed(2))
-    }
+  return priceFormat (totalPrice);
 }
 
 function getSalePrice(originalPrice, reduction) {
   if (originalPrice === undefined) throw new Error("originalPrice is required");
   if (reduction === undefined) throw new Error("reduction is required");
-  // Add your code here!
+  
+  const salePrice = (originalPrice - (originalPrice/100 * reduction))
+  return priceFormat (salePrice);
 }
 
 function getMiddleCharacter(str) {
