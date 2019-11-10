@@ -27,8 +27,6 @@ function priceFormat (num) {
   }
 }
 
-
-
 function addVAT(originalPrice, vatRate) {
   if (originalPrice === undefined) throw new Error("originalPrice is requied");
   if (vatRate === undefined) throw new Error("vatRate is required");
@@ -45,10 +43,24 @@ function getSalePrice(originalPrice, reduction) {
   return priceFormat (salePrice);
 }
 
+function isNumEven(num){
+  if(num%2 === 0){
+    return true;
+  }
+    return false;
+}
+
 function getMiddleCharacter(str) {
   if (str === undefined) throw new Error("str is required");
-  // Add your code here!
-}
+  
+  const stringEven = isNumEven(str.length) 
+  
+  if (stringEven){
+    return str[(str.length/2) - 1] + str[(str.length/2)]; 
+  }else{
+    return str[Math.floor(str.length/2)] 
+  }
+} 
 
 function reverseWord(word) {
   if (word === undefined) throw new Error("word is required");
