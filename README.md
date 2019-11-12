@@ -22,7 +22,7 @@ We will be adding more tasks to this repository as the weeks progress, so you'll
 
 To do this, running the following command:
 
-    git remote add upstream https://github.com/techreturners/javascript_practice.git
+    git remote add upstream https://github.com/techreturners/js_practice_booking2019.git
 
 This means that there will be links established between:
 
@@ -125,7 +125,7 @@ And when the string is already capitalized:
 
 `capitalize("Hello everyone") --> "Hello everyone"`
 
-What is the string contains no characters?
+What if the string contains no characters?
 
 `capitalize("") --> ""`
 
