@@ -44,17 +44,36 @@ function getTotalSubjects(people) {
 
   var numOfSubjects = 0;
 
-  people.forEach(function(person) {
-    
-  numOfSubjects += person.subjects.length;
+  people.forEach(function (person) {
+
+    numOfSubjects += person.subjects.length;
   });
+
   return numOfSubjects
 }
+
+
 
 function checkIngredients(menu, ingredient) {
   if (menu === undefined) throw new Error("menu is required");
   if (!ingredient) throw new Error("ingredient is required");
-  // Your code here!
+  //a final counter
+  let count = 0
+  //loop each recipe
+  menu.map(function (item) {
+    //for each recipe we loop/filter through ingredients and try to match the item to the ingredient
+    const result = item.ingredients.filter(item => ingredient === item);
+    //if result found the ingredient we count +1
+    if (result.length > 0) {
+      count++
+    }
+  });
+
+  //if the count is > 0 it is because the ingredient exists once or more in any recipe
+  if (count > 0) {
+    return true
+  }
+    return false
 }
 
 function duplicateNumbers(arr1, arr2) {
