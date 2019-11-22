@@ -25,7 +25,7 @@ function camelCaseWords(words) {
   if (words === undefined) throw new Error("words is required");
 
   var wordsArray = words.slice(" ")
-  
+
   var camelize = "";
 
   wordsArray.map(function (word, index) {
@@ -35,13 +35,20 @@ function camelCaseWords(words) {
     } else {
       camelize = camelize + capitalize(lowercase(word));
     }
-  })
+  });
   return camelize;
 }
 
 function getTotalSubjects(people) {
   if (people === undefined) throw new Error("people is required");
-  // Your code here!
+
+  var numOfSubjects = 0;
+
+  people.forEach(function(person) {
+    
+  numOfSubjects += person.subjects.length;
+  });
+  return numOfSubjects
 }
 
 function checkIngredients(menu, ingredient) {
