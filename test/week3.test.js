@@ -42,6 +42,10 @@ describe("camelCaseWords", () => {
       "isHigherThanMinNumber"
     );
   });
+
+  test("camel cases mixed lower and uppercase letters)", () => {
+    expect(camelCaseWords(["mY", "varIabLe"])).toBe("myVariable");
+  });
 });
 
 describe("getTotalSubjects", () => {

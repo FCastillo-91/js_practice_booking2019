@@ -1,18 +1,42 @@
 function getSquares(nums = []) {
-  
+
   if (nums === undefined) throw new Error("nums is required");
   // map transform numbers in array to the squares
   const listOfNums = [];
-  
+
   nums.map(function (n) {
     listOfNums.push(n * n)
   });
   return listOfNums;
 }
 
+function capitalize(word) {
+  if (word === undefined) throw new Error("word is required");
+
+  const firstCharCap = word[0].toUpperCase() + word.slice(1)
+
+  return firstCharCap
+}
+
+function lowercase(word) {
+  return word.toLowerCase()
+}
 function camelCaseWords(words) {
   if (words === undefined) throw new Error("words is required");
-  // Your code here!
+
+  var wordsArray = words.slice(" ")
+  
+  var camelize = "";
+
+  wordsArray.map(function (word, index) {
+
+    if (index === 0) {
+      camelize = lowercase(word);
+    } else {
+      camelize = camelize + capitalize(lowercase(word));
+    }
+  })
+  return camelize;
 }
 
 function getTotalSubjects(people) {
