@@ -1,6 +1,13 @@
-function getSquares(nums) {
+function getSquares(nums = []) {
+  
   if (nums === undefined) throw new Error("nums is required");
-  // Your code here!
+  // map transform numbers in array to the squares
+  const listOfNums = [];
+  
+  nums.map(function (n) {
+    listOfNums.push(n * n)
+  });
+  return listOfNums;
 }
 
 function camelCaseWords(words) {
