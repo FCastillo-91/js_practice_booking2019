@@ -73,13 +73,33 @@ function checkIngredients(menu, ingredient) {
   if (count > 0) {
     return true
   }
-    return false
+  return false
 }
 
 function duplicateNumbers(arr1, arr2) {
   if (arr1 === undefined) throw new Error("arr1 is required");
   if (arr2 === undefined) throw new Error("arr2 is required");
-  // Your code here!
+
+  var temp = [];
+
+  arr1.map(function (num) {
+
+    arr2.map(function (num2) {
+
+      if (num === num2) {
+
+        temp.push(num)
+      }
+    })
+  })
+
+  return noCopies(temp.sort(function (a, b) { return a - b }));
+}
+
+function noCopies(arrArg) {
+  return arrArg.filter(function (elem, pos, arr) {
+    return arr.indexOf(elem) == pos;
+  });
 }
 
 module.exports = {
