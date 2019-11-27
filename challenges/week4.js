@@ -20,19 +20,29 @@ function findNamesBeginningWith(names, char) {
   const listOfNamesBeginningWith = [];
 
   for (let i = 0; i < names.length; i++) {
-    const item = names[i]
+    const item = names[i];
   
-    const firstCharOfName = item[0]
+    const firstCharOfName = item[0];
 
     if (firstCharOfName === char)
-    listOfNamesBeginningWith.push(item)
+    listOfNamesBeginningWith.push(item);
   }
-  return listOfNamesBeginningWith
+  return listOfNamesBeginningWith;
 }
 
 function findVerbs(words) {
   if (!words) throw new Error("words is required");
-  // Your code here
+  const listOfVerbs = [];
+
+  for (let i = 0; i < words.length; i++) {
+    const item = words[i];
+
+    const firstThreeChars = item.slice(0,3);
+    
+    if (firstThreeChars === "to ")
+    listOfVerbs.push(item);
+  }
+  return listOfVerbs;
 }
 
 function getIntegers(nums) {
