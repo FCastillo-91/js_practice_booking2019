@@ -24,8 +24,9 @@ function findNamesBeginningWith(names, char) {
   
     const firstCharOfName = item[0];
 
-    if (firstCharOfName === char)
+    if (firstCharOfName === char) {
     listOfNamesBeginningWith.push(item);
+    }
   }
   return listOfNamesBeginningWith;
 }
@@ -39,20 +40,32 @@ function findVerbs(words) {
 
     const firstThreeChars = item.slice(0,3);
     
-    if (firstThreeChars === "to ")
+    if (firstThreeChars === "to ") {
     listOfVerbs.push(item);
+    }
   }
   return listOfVerbs;
 }
 
 function getIntegers(nums) {
   if (!nums) throw new Error("nums is required");
-  // Your code here
+  
+  const listOfIntegers = [];
+
+  for (let i = 0; i < nums.length; i++) {
+    
+    const item = nums[i];
+    
+    if (Number.isInteger(item)) {
+      listOfIntegers.push(item);
+    }
+  } 
+  return listOfIntegers;
 }
 
 function getCities(users) {
   if (!users) throw new Error("users is required");
-  // Your code here
+  
 }
 
 function getSquareRoots(nums) {
