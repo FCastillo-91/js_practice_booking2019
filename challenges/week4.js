@@ -48,14 +48,12 @@ function getIntegers(nums) {
   
   const listOfIntegers = [];
 
-  for (let i = 0; i < nums.length; i++) {
-    
-    const item = nums[i];
+  nums.forEach(function(item) {
     
     if (Number.isInteger(item)) {
-      listOfIntegers.push(item);
+    listOfIntegers.push(item);
     }
-  } 
+  })
   return listOfIntegers;
 }
 
