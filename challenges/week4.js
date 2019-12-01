@@ -58,18 +58,8 @@ function getCities(users) {
 function getSquareRoots(nums) {
   if (!nums) throw new Error("nums is required");
   
-  const listOfSqRoots = []
-
-  nums.forEach(function(number) {
-  
-    const sqRoot = Math.sqrt(number);
-    
-    if (sqRoot % 1 === 0) {
-    parseFloat(listOfSqRoots.push(sqRoot))
-    
-    } else {
-    listOfSqRoots.push(parseFloat(sqRoot.toFixed(2)))
-    }
+  const listOfSqRoots = nums.map(function (number) {
+    return parseFloat(Math.sqrt(number).toFixed(2))
   })
   return listOfSqRoots
 }
