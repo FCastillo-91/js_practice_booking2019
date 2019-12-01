@@ -1,11 +1,9 @@
 function findSmallNums(nums) {
   if (!nums) throw new Error("nums is required");
 
-  const listOfSmallNums = []
-
-  nums.forEach(function(item) {
-    if (item < 1) {
-    listOfSmallNums.push(item)
+  const listOfSmallNums = nums.filter(function(number) {
+    if (number < 1) {
+  return true
     }
   })
   return listOfSmallNums
