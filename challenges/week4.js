@@ -13,14 +13,10 @@ function findNamesBeginningWith(names, char) {
   if (!names) throw new Error("names is required");
   if (!char) throw new Error("char is required");
   
-  const listOfNamesBeginningWith = [];
-
-  names.forEach(function(item) {
-  
+  const listOfNamesBeginningWith = names.filter(function(item) {
     const firstCharOfName = item[0];
-
     if (firstCharOfName === char) {
-    listOfNamesBeginningWith.push(item);
+      return true
     }
   })
   return listOfNamesBeginningWith;
