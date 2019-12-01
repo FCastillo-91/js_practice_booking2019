@@ -79,7 +79,20 @@ function getCities(users) {
 
 function getSquareRoots(nums) {
   if (!nums) throw new Error("nums is required");
-  // Your code here
+  
+  const listOfSqRoots = []
+
+  for (let i = 0; i < nums.length; i++) {
+    const number = nums[i]
+
+    const sqRoot = Math.sqrt(number);
+    if (sqRoot % 1 === 0) {
+      parseFloat(listOfSqRoots.push(sqRoot))
+    } else {
+      listOfSqRoots.push(parseFloat(sqRoot.toFixed(2)))
+    }
+  }
+  return listOfSqRoots
 }
 
 function findSentencesContaining(sentences, str) {
