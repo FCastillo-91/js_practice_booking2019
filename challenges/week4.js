@@ -25,7 +25,7 @@ function findNamesBeginningWith(names, char) {
 function findVerbs(words) {
   if (!words) throw new Error("words is required");
   
-  const listOfVerbs = words.filter(function(item){
+  const listOfVerbs = words.filter(function(item) {
     const firstThreeChars = item.slice(0,3);
     
     if (firstThreeChars === "to ") {
@@ -38,15 +38,12 @@ function findVerbs(words) {
 function getIntegers(nums) {
   if (!nums) throw new Error("nums is required");
   
-  const listOfIntegers = [];
-
-  nums.forEach(function(item) {
-    
+  const listOfIntegers = nums.filter(function(item) {
     if (Number.isInteger(item)) {
-    listOfIntegers.push(item);
+    return true
     }
   })
-  return listOfIntegers;
+  return listOfIntegers
 }
 
 function getCities(users) {
