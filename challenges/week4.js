@@ -99,9 +99,9 @@ function findSentencesContaining(sentences, str) {
     
   const word = eachSentence.toLowerCase().indexOf(str)
     
-  if (word !== -1) {
-  list.push(eachSentence)
-  }
+    if (word !== -1) {
+    list.push(eachSentence)
+    }
   })
   return list
 }
@@ -111,15 +111,11 @@ function getLongestSides(triangles) {
   
   const allLongestSides = []
 
-  for (let i = 0; i < triangles.length; i++) {
-
-    const eachTriangle = triangles[i].sort(function(a, b){return a-b})
-    
-    const longestSide = eachTriangle.slice(2,3)
+  triangles.forEach(function(eachTriangle) {
+    const longestSide = eachTriangle.sort(function(a, b){return a-b}).slice(2,3)
     allLongestSides.push(parseInt(longestSide))
-    
-  }
-  return allLongestSides
+  })
+  return allLongestSides  
 }
 
 module.exports = {
