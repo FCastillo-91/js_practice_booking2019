@@ -49,12 +49,8 @@ function getIntegers(nums) {
 function getCities(users) {
   if (!users) throw new Error("users is required");
    
-  const listOfCities = []
-
-  users.forEach(function(item) {
-  
-  const city = item.data.city.displayName
-  listOfCities.push(city);
+  const listOfCities = users.map(function (item) {
+    return item.data.city.displayName
   })
   return listOfCities;
 }
