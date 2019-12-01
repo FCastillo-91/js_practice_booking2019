@@ -5,8 +5,8 @@ function findSmallNums(nums) {
 
   nums.forEach(function(item) {
     if (item < 1) {
-      listOfSmallNums.push(item)
-      }
+    listOfSmallNums.push(item)
+    }
   })
   return listOfSmallNums
 }
@@ -17,15 +17,14 @@ function findNamesBeginningWith(names, char) {
   
   const listOfNamesBeginningWith = [];
 
-  for (let i = 0; i < names.length; i++) {
-    const item = names[i];
+  names.forEach(function(item) {
   
     const firstCharOfName = item[0];
 
     if (firstCharOfName === char) {
     listOfNamesBeginningWith.push(item);
     }
-  }
+  })
   return listOfNamesBeginningWith;
 }
 
