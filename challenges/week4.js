@@ -1,15 +1,13 @@
 function findSmallNums(nums) {
   if (!nums) throw new Error("nums is required");
-  
+
   const listOfSmallNums = []
 
-  for (let i = 0; i < nums.length; i++) {
-    const item = nums[i];
-    
+  nums.forEach(function(item) {
     if (item < 1) {
-    listOfSmallNums.push(item)
-    }
-  }
+      listOfSmallNums.push(item)
+      }
+  })
   return listOfSmallNums
 }
 
