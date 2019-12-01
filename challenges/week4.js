@@ -98,7 +98,20 @@ function getSquareRoots(nums) {
 function findSentencesContaining(sentences, str) {
   if (!sentences) throw new Error("sentences is required");
   if (!str) throw new Error("str is required");
-  // Your code here
+  
+  const list = []
+
+  for (let i = 0; i < sentences.length; i++) {
+
+    const eachSentence = sentences[i]
+    const word = eachSentence.toLowerCase().indexOf(str)
+    
+    if (word !== -1) {
+      
+      list.push(eachSentence)
+    }
+  }
+  return list
 }
 
 function getLongestSides(triangles) {
