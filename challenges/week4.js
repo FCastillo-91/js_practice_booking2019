@@ -70,7 +70,7 @@ function findSentencesContaining(sentences, str) {
   
   const list = sentences.filter(function (eachSentence){
     if (eachSentence.toLowerCase().indexOf(str) !== -1) {
-      return eachSentence
+      return true
     }
   })    
   return list
@@ -79,11 +79,8 @@ function findSentencesContaining(sentences, str) {
 function getLongestSides(triangles) {
   if (!triangles) throw new Error("triangles is required");
   
-  const allLongestSides = []
-
-  triangles.forEach(function(eachTriangle) {
-    const longestSide = eachTriangle.sort(function(a, b){return a-b}).slice(2,3)
-    allLongestSides.push(parseInt(longestSide))
+  const allLongestSides = triangles.map(function(eachTriangle) {
+    return parseInt(eachTriangle.sort(function(a, b){return a-b}).slice(2,3))
   })
   return allLongestSides  
 }
