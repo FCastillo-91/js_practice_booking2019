@@ -68,16 +68,11 @@ function findSentencesContaining(sentences, str) {
   if (!sentences) throw new Error("sentences is required");
   if (!str) throw new Error("str is required");
   
-  const list = []
-
-  sentences.forEach(function(eachSentence) {
-    
-  const word = eachSentence.toLowerCase().indexOf(str)
-    
-    if (word !== -1) {
-    list.push(eachSentence)
+  const list = sentences.filter(function (eachSentence){
+    if (eachSentence.toLowerCase().indexOf(str) !== -1) {
+      return eachSentence
     }
-  })
+  })    
   return list
 }
 
