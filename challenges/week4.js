@@ -75,16 +75,17 @@ function getSquareRoots(nums) {
   
   const listOfSqRoots = []
 
-  for (let i = 0; i < nums.length; i++) {
-    const number = nums[i]
-
+  nums.forEach(function(number) {
+  
     const sqRoot = Math.sqrt(number);
+    
     if (sqRoot % 1 === 0) {
-      parseFloat(listOfSqRoots.push(sqRoot))
+    parseFloat(listOfSqRoots.push(sqRoot))
+    
     } else {
-      listOfSqRoots.push(parseFloat(sqRoot.toFixed(2)))
+    listOfSqRoots.push(parseFloat(sqRoot.toFixed(2)))
     }
-  }
+  })
   return listOfSqRoots
 }
 
