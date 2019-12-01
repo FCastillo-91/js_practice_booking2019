@@ -59,16 +59,15 @@ function getIntegers(nums) {
 
 function getCities(users) {
   if (!users) throw new Error("users is required");
-   const listOfCities = []
+   
+  const listOfCities = []
 
-  for (let i = 0; i < users.length; i++) {
-    const item = users[i];
-
-    const city = item.data.city.displayName
-
-    listOfCities.push(city);
-  } 
-    return listOfCities;
+  users.forEach(function(item) {
+  
+  const city = item.data.city.displayName
+  listOfCities.push(city);
+  })
+  return listOfCities;
 }
 
 function getSquareRoots(nums) {
