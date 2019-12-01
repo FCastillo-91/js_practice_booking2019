@@ -30,17 +30,16 @@ function findNamesBeginningWith(names, char) {
 
 function findVerbs(words) {
   if (!words) throw new Error("words is required");
+  
   const listOfVerbs = [];
 
-  for (let i = 0; i < words.length; i++) {
-    const item = words[i];
-
-    const firstThreeChars = item.slice(0,3);
+  words.forEach(function(item) {
+  const firstThreeChars = item.slice(0,3);
     
     if (firstThreeChars === "to ") {
     listOfVerbs.push(item);
     }
-  }
+  })
   return listOfVerbs;
 }
 
