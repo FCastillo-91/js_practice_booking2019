@@ -95,16 +95,14 @@ function findSentencesContaining(sentences, str) {
   
   const list = []
 
-  for (let i = 0; i < sentences.length; i++) {
-
-    const eachSentence = sentences[i]
-    const word = eachSentence.toLowerCase().indexOf(str)
+  sentences.forEach(function(eachSentence) {
     
-    if (word !== -1) {
-      
-      list.push(eachSentence)
-    }
+  const word = eachSentence.toLowerCase().indexOf(str)
+    
+  if (word !== -1) {
+  list.push(eachSentence)
   }
+  })
   return list
 }
 
