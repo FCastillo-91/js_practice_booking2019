@@ -6,7 +6,7 @@ const findNextNumber = (nums, n) => {
 
   let index = nums.indexOf(parseInt(n));
   let next = index + 1;
-  if ( (index !== -1) && (nums[next] !== undefined)  ) {
+  if ((index !== -1) && (nums[next] !== undefined)) {
     return nums[next]
   }
   return null;
@@ -14,8 +14,24 @@ const findNextNumber = (nums, n) => {
 
 const count1sand0s = str => {
   if (str === undefined) throw new Error("str is required");
- 
+  var countOne = 0;
+  var countZero = 0;
+  
+  [...str].forEach(num => {
+    if (num === '1') {
+      countOne++;
+    }
+    if (num === '0') {
+      countZero++;
+    }
+  })
+
+  
+
+  return ({ 1: countOne, 0: countZero })
 };
+
+
 
 const reverseNumber = n => {
   if (n === undefined) throw new Error("n is required");
@@ -24,13 +40,14 @@ const reverseNumber = n => {
 
 const sumArrays = arrs => {
   if (arrs === undefined) throw new Error("arrs is required");
-  
+
 };
 
 const arrShift = arr => {
   if (arr === undefined) throw new Error("arr is required");
 
 }
+
 const findNeedle = (haystack, searchTerm) => {
   if (haystack === undefined) throw new Error("haystack is required");
   if (searchTerm === undefined) throw new Error("searchTerm is required");
