@@ -39,18 +39,24 @@ const reverseNumber = n => {
 
 const sumArrays = arrs => {
   if (arrs === undefined) throw new Error("arrs is required");
-  
+
   var mergedArr = [].concat.apply([], arrs);
 
   return mergedArr.reduce((a, b) => a + b)
 
 }
 
-
 const arrShift = arr => {
   if (arr === undefined) throw new Error("arr is required");
 
-}
+  if (arr.length >= 2) {
+    [arr[0], arr[arr.length - 1]] = [arr[arr.length - 1], arr[0]];
+    return arr;
+  
+  } else if (arr.length < 2) {
+    return arr;
+  }
+};
 
 const findNeedle = (haystack, searchTerm) => {
   if (haystack === undefined) throw new Error("haystack is required");
