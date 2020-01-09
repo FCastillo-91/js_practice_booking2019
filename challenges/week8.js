@@ -16,7 +16,7 @@ const count1sand0s = str => {
   if (str === undefined) throw new Error("str is required");
   var countOne = 0;
   var countZero = 0;
-  
+
   [...str].forEach(num => {
     if (num === '1') {
       countOne++;
@@ -26,16 +26,15 @@ const count1sand0s = str => {
     }
   })
 
-  
-
   return ({ 1: countOne, 0: countZero })
 };
-
-
 
 const reverseNumber = n => {
   if (n === undefined) throw new Error("n is required");
 
+  n = String(n);
+
+  return parseInt(n.split("").reverse().join(""));
 };
 
 const sumArrays = arrs => {
