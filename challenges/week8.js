@@ -39,8 +39,13 @@ const reverseNumber = n => {
 
 const sumArrays = arrs => {
   if (arrs === undefined) throw new Error("arrs is required");
+  
+  var mergedArr = [].concat.apply([], arrs);
 
-};
+  return mergedArr.reduce((a, b) => a + b)
+
+}
+
 
 const arrShift = arr => {
   if (arr === undefined) throw new Error("arr is required");
