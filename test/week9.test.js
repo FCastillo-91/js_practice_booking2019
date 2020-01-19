@@ -1,4 +1,4 @@
-const { sumMultiples, areWeCovered, isValidDNA, getComplementaryDNA, isItPrime } = require("../challenges/week9");
+const { sumMultiples, areWeCovered, isValidDNA, getComplementaryDNA, isItPrime, createMatrix } = require("../challenges/week9");
 
 describe("sumMultiples", () => {
     test("it throws an error if not passed an array", () => {
@@ -106,6 +106,33 @@ describe("isItPrime", () => {
     test("returns false if the number negative", () => {
         expect(isItPrime(-2)).toBe(false);
     });
+});
+
+describe("createMatrix", () => {
+    it("throws an error if the number is not an integer", () => {
+        expect(() => {
+            createMatrix(2.3, "salad")
+        }).toThrow("n needs to be a whole number");
+    });
+
+    it("returns a matrix of 1 * 1 when passed 1", () => {
+        const result = createMatrix(1, "foo");
+        const expected = [["foo"]];
+        expect(result).toEqual(expected)
+    });
+
+    it("returns a matrix of 3 * 3 when passed 1", () => {
+        const result = createMatrix(3, "hello");
+        const expected = [["hello", "hello", "hello"], ["hello", "hello", "hello"], ["hello", "hello", "hello"]];
+        expect(result).toEqual(expected)
+    });
+
+    it("returns an empty array when passed 0", () => {
+        const result = createMatrix(0, "buy");
+        const expected = [];
+        expect(result).toEqual(expected)
+    });
+
 });
 
 describe("areWeCovered", () => {
