@@ -1,4 +1,4 @@
-const { sumMultiples, areWeCovered, isValidDNA, getComplementaryDNA } = require("../challenges/week9");
+const { sumMultiples, areWeCovered, isValidDNA, getComplementaryDNA, isItPrime } = require("../challenges/week9");
 
 describe("sumMultiples", () => {
     test("it throws an error if not passed an array", () => {
@@ -83,6 +83,28 @@ describe("getComplementaryDNA", () => {
         expect(getComplementaryDNA("gtca")).toBe("CAGT");
 
         expect(getComplementaryDNA("CTaG")).toBe("GATC");
+    });
+});
+
+describe("isItPrime", () => {
+    test("returns true if the number is divisible by 1", () => {
+        expect(isItPrime(7)).toBe(true);
+    });
+
+    test("returns true if the number is divisible by 1 and divisible by itself", () => {
+        expect(isItPrime(13)).toBe(true);
+    });
+
+    test("returns false if the number is divisible by other numbers apart from 1 and itself", () => {
+        expect(isItPrime(22)).toBe(false);
+    });
+
+    test("returns false if the number is a decimal", () => {
+        expect(isItPrime(15.2)).toBe(false);
+    });
+
+    test("returns false if the number negative", () => {
+        expect(isItPrime(-2)).toBe(false);
     });
 });
 
