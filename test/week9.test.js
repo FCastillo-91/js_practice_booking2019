@@ -35,6 +35,36 @@ test("it returns 0 if no multiples of 3 or 5", () => {
     expect(sumMultiples([1, 7, 4, 22])).toBe(0);
 });
 
+describe("isValidDNA", () => {
+    test("returns true if DNA string includes characters C, G, T or A only", () => {
+        expect(isValidDNA("CGTA")).toBe(true);
+    });
+
+    test("returns true if DNA string includes characters C, G, T or A in any order", () => {
+        expect(isValidDNA("AGTC")).toBe(true);
+
+        expect(isValidDNA("GATC")).toBe(true);
+    });
+
+    test("return true if string contains characters C, G, T, A in repeated format", () => {
+        expect(isValidDNA("AGTCGTCAATGCAGTCAA")).toBe(true);
+    });
+
+    test("returns false if string does not include characters C, G, T or A", () => {
+        expect(isValidDNA("JBPD")).toBe(false);
+    });
+
+    test("returns false if DNA string includes other characters as well as C, G, T or A in any order", () => {
+        expect(isValidDNA("PXAGTC")).toBe(false);
+    });
+
+    test("not case sensitive", () => {
+        expect(isValidDNA("gtca")).toBe(true);
+
+        expect(isValidDNA("gTca")).toBe(true);
+    });
+});
+
 describe("areWeCovered", () => {
 
     test("if staff is undefined throws an error", () => {
