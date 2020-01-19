@@ -1,4 +1,4 @@
-const { sumMultiples, areWeCovered, isValidDNA } = require("../challenges/week9");
+const { sumMultiples, areWeCovered, isValidDNA, getComplementaryDNA } = require("../challenges/week9");
 
 describe("sumMultiples", () => {
     test("it throws an error if not passed an array", () => {
@@ -62,6 +62,27 @@ describe("isValidDNA", () => {
         expect(isValidDNA("gtca")).toBe(true);
 
         expect(isValidDNA("gTca")).toBe(true);
+    });
+});
+
+describe("getComplementaryDNA", () => {
+
+    test("it throws an error if DNA is not valid", () => {
+        expect(() => {
+            getComplementaryDNA("JPCD");
+        }).toThrow("DNA string is not valid");
+    });
+
+    test("returns complementary DNA string in base pairs", () => {
+        expect(getComplementaryDNA("ACTG")).toBe("TGAC");
+
+        expect(getComplementaryDNA("CTGA")).toBe("GACT");
+    });
+
+    test("not case sensitive", () => {
+        expect(getComplementaryDNA("gtca")).toBe("CAGT");
+
+        expect(getComplementaryDNA("CTaG")).toBe("GATC");
     });
 });
 

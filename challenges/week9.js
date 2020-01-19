@@ -25,13 +25,13 @@ const sumMultiples = arr => {
  */
 const isValidDNA = str => {
   if (str === undefined) throw new Error("str is required");
-  
+
   const character = str.toUpperCase().split('');
   let isValid = true;
-  
+
   character.forEach(letter => {
     if (letter !== "C" && letter !== "G" && letter !== "T" && letter !== "A") {
-      isValid =  false;
+      isValid = false;
     }
   });
   return isValid;
@@ -44,6 +44,28 @@ const isValidDNA = str => {
  */
 const getComplementaryDNA = str => {
   if (str === undefined) throw new Error("str is required");
+  if (!isValidDNA(str)) throw new Error("DNA string is not valid")
+
+  let compDNA = '';
+
+  const character = str.toUpperCase().split('');
+  
+  character.forEach(letter => {
+    
+    if (letter === "A") {
+    compDNA = compDNA + "T"
+    
+    } if (letter === "T") {
+    compDNA = compDNA + "A"
+    
+      } if (letter === "C") {
+      compDNA = compDNA + "G"
+      
+        } if (letter === "G") {
+        compDNA = compDNA + "C"
+        }
+  })
+  return compDNA
 };
 
 /**
@@ -86,18 +108,18 @@ const createMatrix = (n, fill) => {
 const areWeCovered = (staff, day) => {
   if (staff === undefined) throw new Error("staff is required");
   if (day === undefined) throw new Error("day is required");
-  if(!Array.isArray(staff)) throw new Error("staff needs to be an array");
+  if (!Array.isArray(staff)) throw new Error("staff needs to be an array");
   if (isNaN(day) === false) throw new Error("day needs to be a string")
-  
+
   let rotaList = [];
   let min = 3;
-  
+
   staff.forEach(employee => {
-    
+
     let empRota = employee.rota;
-    
+
     empRota.forEach(rotaDay => {
-      
+
       if (rotaDay.toLowerCase() === day.toLowerCase()) {
         rotaList.push(employee.name);
       }
