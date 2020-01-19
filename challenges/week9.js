@@ -7,15 +7,15 @@
 const sumMultiples = arr => {
   if (arr === undefined) throw new Error("arr is required");
   if (!Array.isArray(arr)) throw new Error("arr is required");
-  
+
   let total = 0;
 
-arr.forEach(n => {
-  if (n % 3 ===0 || n % 5 ===0) {
-    total += n;
-  }
-});
-return total;
+  arr.forEach(n => {
+    if (n % 3 === 0 || n % 5 === 0) {
+      total += n;
+    }
+  });
+  return total;
 };
 
 /**
@@ -25,6 +25,7 @@ return total;
  */
 const isValidDNA = str => {
   if (str === undefined) throw new Error("str is required");
+
 };
 
 /**
@@ -76,6 +77,26 @@ const createMatrix = (n, fill) => {
 const areWeCovered = (staff, day) => {
   if (staff === undefined) throw new Error("staff is required");
   if (day === undefined) throw new Error("day is required");
+  if(!Array.isArray(staff)) throw new Error("staff needs to be an array");
+  if (isNaN(day) === false) throw new Error("day needs to be a string")
+  
+  let rotaList = [];
+  let min = 3;
+  
+  staff.forEach(employee => {
+    
+    let empRota = employee.rota;
+    
+    empRota.forEach(rotaDay => {
+      
+      if (rotaDay.toLowerCase() === day.toLowerCase()) {
+        rotaList.push(employee.name);
+      }
+    });
+  });
+
+  return (rotaList.length >= min) ? true : false;
+
 };
 
 module.exports = {
