@@ -23,9 +23,14 @@ const sumDigits = n => {
  */
 const createRange = (start, end, step) => {
   if (start === undefined) throw new Error("start is required");
+  if (isNaN(start) === true || start === null) throw new Error("start number is required");
   if (end === undefined) throw new Error("end is required");
+  if (isNaN(end) === true) throw new Error("end number is required");
+  if (step <= 0) throw new Error("step must be greater than 0");
   if (typeof step === 'undefined') { step = 1; }
-
+  if (!Number.isInteger(step)) throw new Error("step must be a whole number");
+  if (end < start) throw new Error("end number must be greater than start number");
+  
   var range = []
 
     for (let i = start; i <= end; i += step) {
