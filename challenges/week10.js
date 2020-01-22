@@ -30,15 +30,13 @@ const createRange = (start, end, step) => {
   if (typeof step === 'undefined') { step = 1; }
   if (!Number.isInteger(step)) throw new Error("step must be a whole number");
   if (end < start) throw new Error("end number must be greater than start number");
-  
+  if (end < step) throw new Error("step must be greater than the gap between end and start");
+
   var range = []
 
-    for (let i = start; i <= end; i += step) {
-
-      var numbers = i
-
-      range.push(numbers)
-    }
+  for (let i = start; i <= end; i += step) {
+    range.push(i)
+  }
 
   return range
 };
@@ -75,7 +73,29 @@ const createRange = (start, end, step) => {
 const getScreentimeAlertList = (users, date) => {
   if (users === undefined) throw new Error("users is required");
   if (date === undefined) throw new Error("date is required");
-};
+
+  let usersOver100Mins = [];
+  let sum = 0;
+  //loop for each user
+  users.forEach(function (user) {
+
+    //loop for each users screentime
+    (user.screenTime).forEach(function (dailyScreenUsage) {
+
+      if (date === dailyScreenUsage.date) {
+        sum = 0;
+
+        for (const [key, value] of Object.entries(dailyScreenUsage.usage)) {
+          sum += value 
+        }
+        if (sum > 100) {
+          usersOver100Mins.push(user.username)
+        }   
+      }
+    });
+  });
+  return usersOver100Mins;
+}
 
 /**
  * This function will receive a hexadecimal color code in the format #FF1133. A hexadecimal code is a number written in hexadecimal notation, i.e. base 16. If you want to know more about hexadecimal notation:
