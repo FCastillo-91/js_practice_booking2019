@@ -1,4 +1,4 @@
-const { sumDigits, createRange, getScreentimeAlertList } = require("../challenges/week10");
+const { sumDigits, createRange, getScreentimeAlertList, hexToRGB } = require("../challenges/week10");
 
 describe("sumDigits", () => {
     test("it throws an error if not passed an int", () => {
@@ -281,5 +281,27 @@ describe("getScreentimeAlertList", () => {
             },
         ];
         expect(getScreentimeAlertList(users, "2019-05-04")).toEqual([]);
+    });
+
+    describe("hexToRGB", () => {
+        test("throws an error if passed undefined parameter", () => {
+            expect(() => {
+                hexToRGB();
+            }).toThrow("hexStr is required");
+
+            expect(() => {
+                hexToRGB(23);
+            }).toThrow("String is required");
+        });
+
+        test("returns RGB colour code when passed hexidecimal colour code", () => {
+            expect(hexToRGB("#FF1133")).toBe("rgb(255,17,51)");
+
+            expect(hexToRGB("#00bfff")).toBe("rgb(0,191,255)");
+        });
+
+        test("returns the RGB colour code when passed the hexidecimal code without the # included", () => {
+            expect(hexToRGB("00bfff")).toBe("rgb(0,191,255)");
+        })
     });
 });
