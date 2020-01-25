@@ -1,4 +1,4 @@
-const { sumDigits, createRange, getScreentimeAlertList, hexToRGB } = require("../challenges/week10");
+const { sumDigits, createRange, getScreentimeAlertList, hexToRGB, findWinner } = require("../challenges/week10");
 
 describe("sumDigits", () => {
     test("it throws an error if not passed an int", () => {
@@ -34,7 +34,6 @@ describe("sumDigits", () => {
     test("returns the same number when there is only 1 digit", () => {
         expect(sumDigits(4)).toBe(4);
     });
-
 });
 
 describe("createRange", () => {
@@ -89,9 +88,9 @@ describe("createRange", () => {
     });
 
     test("throws an error if step sequence is not possible within range paramters", () => {
-            expect(() => {
-                createRange(1, 2, 5);
-            }).toThrow("step must be greater than the gap between end and start");
+        expect(() => {
+            createRange(1, 2, 5);
+        }).toThrow("step must be greater than the gap between end and start");
     });
 
     test("if only two parameters are provided assume step is 1", () => {
@@ -130,50 +129,50 @@ describe("getScreentimeAlertList", () => {
     test("throws an Error if passed something apart from a date", () => {
         const users = [
             {
-            username: "beth_1234",
-            name: "Beth Smith",
-            screenTime: [
-            { date: "2019-05-01", usage: { twitter: 34, instagram: 22, facebook: 40} },
-            { date: "2019-05-02", usage: { twitter: 56, instagram: 40, facebook: 31} },
-            { date: "2019-05-03", usage: { twitter: 12, instagram: 15, facebook: 19} },
-            { date: "2019-05-04", usage: { twitter: 10, instagram: 56, facebook: 61} },
-            ]
+                username: "beth_1234",
+                name: "Beth Smith",
+                screenTime: [
+                    { date: "2019-05-01", usage: { twitter: 34, instagram: 22, facebook: 40 } },
+                    { date: "2019-05-02", usage: { twitter: 56, instagram: 40, facebook: 31 } },
+                    { date: "2019-05-03", usage: { twitter: 12, instagram: 15, facebook: 19 } },
+                    { date: "2019-05-04", usage: { twitter: 10, instagram: 56, facebook: 61 } },
+                ]
             },
             {
-            username: "sam_j_1989",
-            name: "Sam Jones",
-            screenTime: [
-            { date: "2019-06-11", usage: { mapMyRun: 0, whatsApp: 0, facebook: 0, safari: 10} },
-            { date: "2019-06-13", usage: { mapMyRun: 0, whatsApp: 0, facebook: 0, safari: 16} },
-            { date: "2019-06-14", usage: { mapMyRun: 0, whatsApp: 0, facebook: 0, safari: 31} },
-            ]
+                username: "sam_j_1989",
+                name: "Sam Jones",
+                screenTime: [
+                    { date: "2019-06-11", usage: { mapMyRun: 0, whatsApp: 0, facebook: 0, safari: 10 } },
+                    { date: "2019-06-13", usage: { mapMyRun: 0, whatsApp: 0, facebook: 0, safari: 16 } },
+                    { date: "2019-06-14", usage: { mapMyRun: 0, whatsApp: 0, facebook: 0, safari: 31 } },
+                ]
             },
         ];
         expect(() => {
-        getScreentimeAlertList(users, 20);
-    }).toThrow("date type required");
+            getScreentimeAlertList(users, 20);
+        }).toThrow("date type required");
     });
 
     test("returns an array of usernames of users who have used more than 100 minutes of screentime for a given date", () => {
         const users = [
             {
-            username: "beth_1234",
-            name: "Beth Smith",
-            screenTime: [
-            { date: "2019-05-01", usage: { twitter: 34, instagram: 22, facebook: 40} },
-            { date: "2019-05-02", usage: { twitter: 56, instagram: 40, facebook: 31} },
-            { date: "2019-05-03", usage: { twitter: 12, instagram: 15, facebook: 19} },
-            { date: "2019-05-04", usage: { twitter: 10, instagram: 56, facebook: 61} },
-            ]
+                username: "beth_1234",
+                name: "Beth Smith",
+                screenTime: [
+                    { date: "2019-05-01", usage: { twitter: 34, instagram: 22, facebook: 40 } },
+                    { date: "2019-05-02", usage: { twitter: 56, instagram: 40, facebook: 31 } },
+                    { date: "2019-05-03", usage: { twitter: 12, instagram: 15, facebook: 19 } },
+                    { date: "2019-05-04", usage: { twitter: 10, instagram: 56, facebook: 61 } },
+                ]
             },
             {
-            username: "sam_j_1989",
-            name: "Sam Jones",
-            screenTime: [
-            { date: "2019-06-11", usage: { mapMyRun: 0, whatsApp: 0, facebook: 0, safari: 10} },
-            { date: "2019-06-13", usage: { mapMyRun: 0, whatsApp: 0, facebook: 0, safari: 16} },
-            { date: "2019-06-14", usage: { mapMyRun: 0, whatsApp: 0, facebook: 0, safari: 31} },
-            ]
+                username: "sam_j_1989",
+                name: "Sam Jones",
+                screenTime: [
+                    { date: "2019-06-11", usage: { mapMyRun: 0, whatsApp: 0, facebook: 0, safari: 10 } },
+                    { date: "2019-06-13", usage: { mapMyRun: 0, whatsApp: 0, facebook: 0, safari: 16 } },
+                    { date: "2019-06-14", usage: { mapMyRun: 0, whatsApp: 0, facebook: 0, safari: 31 } },
+                ]
             },
         ];
         expect(getScreentimeAlertList(users, "2019-05-04")).toEqual(["beth_1234"]);
@@ -182,33 +181,33 @@ describe("getScreentimeAlertList", () => {
     test("returns an array of usernames of users who have used more than 100 minutes of screentime for a given date", () => {
         const users = [
             {
-            username: "beth_1234",
-            name: "Beth Smith",
-            screenTime: [
-            { date: "2019-05-01", usage: { twitter: 34, instagram: 22, facebook: 40} },
-            { date: "2019-05-02", usage: { twitter: 56, instagram: 40, facebook: 31} },
-            { date: "2019-05-03", usage: { twitter: 12, instagram: 15, facebook: 19} },
-            { date: "2019-05-04", usage: { twitter: 10, instagram: 56, facebook: 61} },
-            ]
+                username: "beth_1234",
+                name: "Beth Smith",
+                screenTime: [
+                    { date: "2019-05-01", usage: { twitter: 34, instagram: 22, facebook: 40 } },
+                    { date: "2019-05-02", usage: { twitter: 56, instagram: 40, facebook: 31 } },
+                    { date: "2019-05-03", usage: { twitter: 12, instagram: 15, facebook: 19 } },
+                    { date: "2019-05-04", usage: { twitter: 10, instagram: 56, facebook: 61 } },
+                ]
             },
             {
                 username: "janet_34",
                 name: "Janet Baker",
                 screenTime: [
-                { date: "2019-05-01", usage: { twitter: 34, instagram: 22, facebook: 40} },
-                { date: "2019-05-02", usage: { twitter: 56, instagram: 40, facebook: 31} },
-                { date: "2019-05-03", usage: { twitter: 12, instagram: 15, facebook: 19} },
-                { date: "2019-05-04", usage: { twitter: 10, instagram: 56, facebook: 61} },
+                    { date: "2019-05-01", usage: { twitter: 34, instagram: 22, facebook: 40 } },
+                    { date: "2019-05-02", usage: { twitter: 56, instagram: 40, facebook: 31 } },
+                    { date: "2019-05-03", usage: { twitter: 12, instagram: 15, facebook: 19 } },
+                    { date: "2019-05-04", usage: { twitter: 10, instagram: 56, facebook: 61 } },
                 ]
-                },
+            },
             {
-            username: "sam_j_1989",
-            name: "Sam Jones",
-            screenTime: [
-            { date: "2019-06-11", usage: { mapMyRun: 0, whatsApp: 0, facebook: 0, safari: 10} },
-            { date: "2019-06-13", usage: { mapMyRun: 0, whatsApp: 0, facebook: 0, safari: 16} },
-            { date: "2019-06-14", usage: { mapMyRun: 0, whatsApp: 0, facebook: 0, safari: 31} },
-            ]
+                username: "sam_j_1989",
+                name: "Sam Jones",
+                screenTime: [
+                    { date: "2019-06-11", usage: { mapMyRun: 0, whatsApp: 0, facebook: 0, safari: 10 } },
+                    { date: "2019-06-13", usage: { mapMyRun: 0, whatsApp: 0, facebook: 0, safari: 16 } },
+                    { date: "2019-06-14", usage: { mapMyRun: 0, whatsApp: 0, facebook: 0, safari: 31 } },
+                ]
             },
         ];
         expect(getScreentimeAlertList(users, "2019-05-04")).toEqual(["beth_1234", "janet_34"]);
@@ -217,33 +216,33 @@ describe("getScreentimeAlertList", () => {
     test("returns an empty array if there were no users who used more than 100 minutes of screentime for a given date", () => {
         const users = [
             {
-            username: "beth_1234",
-            name: "Beth Smith",
-            screenTime: [
-            { date: "2019-05-01", usage: { twitter: 34, instagram: 22, facebook: 40} },
-            { date: "2019-05-02", usage: { twitter: 56, instagram: 40, facebook: 31} },
-            { date: "2019-05-03", usage: { twitter: 12, instagram: 15, facebook: 19} },
-            { date: "2019-05-04", usage: { twitter: 10, instagram: 56, facebook: 61} },
-            ]
+                username: "beth_1234",
+                name: "Beth Smith",
+                screenTime: [
+                    { date: "2019-05-01", usage: { twitter: 34, instagram: 22, facebook: 40 } },
+                    { date: "2019-05-02", usage: { twitter: 56, instagram: 40, facebook: 31 } },
+                    { date: "2019-05-03", usage: { twitter: 12, instagram: 15, facebook: 19 } },
+                    { date: "2019-05-04", usage: { twitter: 10, instagram: 56, facebook: 61 } },
+                ]
             },
             {
                 username: "janet_34",
                 name: "Janet Baker",
                 screenTime: [
-                { date: "2019-05-01", usage: { twitter: 34, instagram: 22, facebook: 40} },
-                { date: "2019-05-02", usage: { twitter: 56, instagram: 40, facebook: 31} },
-                { date: "2019-05-03", usage: { twitter: 12, instagram: 15, facebook: 19} },
-                { date: "2019-05-04", usage: { twitter: 10, instagram: 56, facebook: 61} },
+                    { date: "2019-05-01", usage: { twitter: 34, instagram: 22, facebook: 40 } },
+                    { date: "2019-05-02", usage: { twitter: 56, instagram: 40, facebook: 31 } },
+                    { date: "2019-05-03", usage: { twitter: 12, instagram: 15, facebook: 19 } },
+                    { date: "2019-05-04", usage: { twitter: 10, instagram: 56, facebook: 61 } },
                 ]
-                },
+            },
             {
-            username: "sam_j_1989",
-            name: "Sam Jones",
-            screenTime: [
-            { date: "2019-06-11", usage: { mapMyRun: 0, whatsApp: 0, facebook: 0, safari: 10} },
-            { date: "2019-06-13", usage: { mapMyRun: 0, whatsApp: 0, facebook: 0, safari: 16} },
-            { date: "2019-06-14", usage: { mapMyRun: 0, whatsApp: 0, facebook: 0, safari: 31} },
-            ]
+                username: "sam_j_1989",
+                name: "Sam Jones",
+                screenTime: [
+                    { date: "2019-06-11", usage: { mapMyRun: 0, whatsApp: 0, facebook: 0, safari: 10 } },
+                    { date: "2019-06-13", usage: { mapMyRun: 0, whatsApp: 0, facebook: 0, safari: 16 } },
+                    { date: "2019-06-14", usage: { mapMyRun: 0, whatsApp: 0, facebook: 0, safari: 31 } },
+                ]
             },
         ];
         expect(getScreentimeAlertList(users, "2019-07-04")).toEqual([]);
@@ -252,56 +251,131 @@ describe("getScreentimeAlertList", () => {
     test("returns an empty array if there were users who used 100 minutes of screentime for a given date", () => {
         const users = [
             {
-            username: "beth_1234",
-            name: "Beth Smith",
-            screenTime: [
-            { date: "2019-05-01", usage: { twitter: 34, instagram: 22, facebook: 40} },
-            { date: "2019-05-02", usage: { twitter: 56, instagram: 40, facebook: 31} },
-            { date: "2019-05-03", usage: { twitter: 12, instagram: 15, facebook: 19} },
-            ]
+                username: "beth_1234",
+                name: "Beth Smith",
+                screenTime: [
+                    { date: "2019-05-01", usage: { twitter: 34, instagram: 22, facebook: 40 } },
+                    { date: "2019-05-02", usage: { twitter: 56, instagram: 40, facebook: 31 } },
+                    { date: "2019-05-03", usage: { twitter: 12, instagram: 15, facebook: 19 } },
+                ]
             },
             {
                 username: "janet_34",
                 name: "Janet Baker",
                 screenTime: [
-                { date: "2019-05-01", usage: { twitter: 34, instagram: 22, facebook: 40} },
-                { date: "2019-05-02", usage: { twitter: 56, instagram: 40, facebook: 31} },
-                { date: "2019-05-03", usage: { twitter: 12, instagram: 15, facebook: 19} },
-                { date: "2019-05-04", usage: { twitter: 0, instagram: 50, facebook: 50} },
+                    { date: "2019-05-01", usage: { twitter: 34, instagram: 22, facebook: 40 } },
+                    { date: "2019-05-02", usage: { twitter: 56, instagram: 40, facebook: 31 } },
+                    { date: "2019-05-03", usage: { twitter: 12, instagram: 15, facebook: 19 } },
+                    { date: "2019-05-04", usage: { twitter: 0, instagram: 50, facebook: 50 } },
                 ]
-                },
+            },
             {
-            username: "sam_j_1989",
-            name: "Sam Jones",
-            screenTime: [
-            { date: "2019-06-11", usage: { mapMyRun: 0, whatsApp: 0, facebook: 0, safari: 10} },
-            { date: "2019-06-13", usage: { mapMyRun: 0, whatsApp: 0, facebook: 0, safari: 16} },
-            { date: "2019-06-14", usage: { mapMyRun: 0, whatsApp: 0, facebook: 0, safari: 31} },
-            ]
+                username: "sam_j_1989",
+                name: "Sam Jones",
+                screenTime: [
+                    { date: "2019-06-11", usage: { mapMyRun: 0, whatsApp: 0, facebook: 0, safari: 10 } },
+                    { date: "2019-06-13", usage: { mapMyRun: 0, whatsApp: 0, facebook: 0, safari: 16 } },
+                    { date: "2019-06-14", usage: { mapMyRun: 0, whatsApp: 0, facebook: 0, safari: 31 } },
+                ]
             },
         ];
         expect(getScreentimeAlertList(users, "2019-05-04")).toEqual([]);
     });
+});
 
-    describe("hexToRGB", () => {
-        test("throws an error if passed undefined parameter", () => {
-            expect(() => {
-                hexToRGB();
-            }).toThrow("hexStr is required");
+describe("hexToRGB", () => {
+    test("throws an error if passed undefined parameter", () => {
+        expect(() => {
+            hexToRGB();
+        }).toThrow("hexStr is required");
 
-            expect(() => {
-                hexToRGB(23);
-            }).toThrow("String is required");
-        });
+        expect(() => {
+            hexToRGB(23);
+        }).toThrow("String is required");
+    });
 
-        test("returns RGB colour code when passed hexidecimal colour code", () => {
-            expect(hexToRGB("#FF1133")).toBe("rgb(255,17,51)");
+    test("returns RGB colour code when passed hexidecimal colour code", () => {
+        expect(hexToRGB("#FF1133")).toBe("rgb(255,17,51)");
 
-            expect(hexToRGB("#00bfff")).toBe("rgb(0,191,255)");
-        });
+        expect(hexToRGB("#00bfff")).toBe("rgb(0,191,255)");
+    });
 
-        test("returns the RGB colour code when passed the hexidecimal code without the # included", () => {
-            expect(hexToRGB("00bfff")).toBe("rgb(0,191,255)");
-        })
+    test("returns the RGB colour code when passed the hexidecimal code without the # included", () => {
+        expect(hexToRGB("00bfff")).toBe("rgb(0,191,255)");
+    })
+});
+
+describe("findWinner", () => {
+    test("returns X if board has three Xs in a vertical line", () => {
+        const board = [
+            ["X", "0", null],
+            ["X", null, "0"],
+            ["X", null, "0"]
+        ]
+        expect(findWinner(board)).toBe("X")
+    });
+
+    test("returns X if board has three Xs in a diagonal line", () => {
+        const board = [
+            [null, "0", "X"],
+            ["0", "X", "0"],
+            ["X", null, null]
+        ]
+        expect(findWinner(board)).toBe("X")
+    });
+
+    test("returns X if board has three Xs in a horizontal line", () => {
+        const board = [
+            [null, "0", "0"],
+            ["X", "X", "X"],
+            ["0", null, null]
+        ]
+        expect(findWinner(board)).toBe("X")
+    });
+
+    test("returns 0 if board has three 0s in a horizontal line", () => {
+        const board = [
+            ["X", null, null],
+            ["0", "0", "0"],
+            ["X", null, "X"]
+        ]
+        expect(findWinner(board)).toBe("0")
+    });
+
+    test("returns 0 if board has three 0s in a diagonal line", () => {
+        const board = [
+            ["0", null, "X"],
+            ["X", "0", null],
+            ["X", null, "0"]
+        ]
+        expect(findWinner(board)).toBe("0")
+    });
+
+    test("returns 0 if board has three 0s in a vertical line", () => {
+        const board = [
+            [null, null, "0"],
+            ["X", "X", "0"],
+            ["X", null, "0"]
+        ]
+        expect(findWinner(board)).toBe("0")
+    });
+
+    test("returns null if there is a stalemate", () => {
+        const board = [
+            ["0", "X", "0"],
+            ["X", "X", "0"],
+            ["X", "0", "0"]
+        ]
+        expect(findWinner(board)).toBe(null)
+    });
+
+    test("returns null if the board hasn't been completed and there is currently no winner", () => {
+        const board = [
+            [null, "X", null],
+            [null, null, "0"],
+            [null, null, null]
+        ]
+        expect(findWinner(board)).toBe(null)
     });
 });
+

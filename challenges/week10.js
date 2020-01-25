@@ -77,7 +77,7 @@ const getScreentimeAlertList = (users, date) => {
 
   let usersOver100Mins = [];
   let sum = 0;
- 
+
   users.forEach(function (user) {
 
     (user.screenTime).forEach(function (dailyScreenUsage) {
@@ -86,11 +86,11 @@ const getScreentimeAlertList = (users, date) => {
         sum = 0;
 
         for (const [key, value] of Object.entries(dailyScreenUsage.usage)) {
-          sum += value 
+          sum += value
         }
         if (sum > 100) {
           usersOver100Mins.push(user.username)
-        }   
+        }
       }
     });
   });
@@ -111,13 +111,13 @@ const hexToRGB = (hexStr) => {
   if (hexStr === undefined) throw new Error("hexStr is required");
   if (!isNaN(hexStr) === true) throw new Error("String is required");
 
-    var noHashHexStr =hexStr.replace("#", "")
+  var noHashHexStr = hexStr.replace("#", "")
 
-    var r = parseInt(noHashHexStr.slice(0, 2), 16),
-        g = parseInt(noHashHexStr.slice(2, 4), 16),
-        b = parseInt(noHashHexStr.slice(4, 6), 16);
+  var r = parseInt(noHashHexStr.slice(0, 2), 16),
+    g = parseInt(noHashHexStr.slice(2, 4), 16),
+    b = parseInt(noHashHexStr.slice(4, 6), 16);
 
-        return "rgb(" + r + "," + g + "," + b + ")";
+  return "rgb(" + r + "," + g + "," + b + ")";
 };
 
 /**
@@ -132,7 +132,60 @@ const hexToRGB = (hexStr) => {
  */
 const findWinner = board => {
   if (board === undefined) throw new Error("board is required");
+
+  var posArr = [].concat.apply([], board);
+
+  var XPos = [];
+  var OPos = [];
+
+  posArr.forEach(function (cell, index) {
+    if (cell === 'X') {
+      XPos.push(index);
+    }
+    if (cell === "0") {
+      OPos.push(index);
+    }
+  });
+
+  if (isWinner(OPos)) {
+    return '0';
+  }
+  if (isWinner(XPos)) {
+    return 'X';
+  }
+  return null;
 };
+
+const isWinner = positions => {
+  positions.sort();
+
+  if (JSON.stringify(positions) === JSON.stringify([0, 1, 2])) {
+    return true;
+  }
+  if (JSON.stringify(positions) === JSON.stringify([3, 4, 5])) {
+    return true;
+  }
+  if (JSON.stringify(positions) === JSON.stringify([6, 7, 8])) {
+    return true;
+  }
+  if (JSON.stringify(positions) === JSON.stringify([0, 3, 6])) {
+    return true;
+  }
+  if (JSON.stringify(positions) === JSON.stringify([1, 4, 7])) {
+    return true;
+  }
+  if (JSON.stringify(positions) === JSON.stringify([2, 5, 8])) {
+    return true;
+  }
+  if (JSON.stringify(positions) === JSON.stringify([0, 4, 8])) {
+    return true;
+  }
+  if (JSON.stringify(positions) === JSON.stringify([2, 4, 6])) {
+    return true;
+  }
+  return false;
+
+}
 
 module.exports = {
   sumDigits,
