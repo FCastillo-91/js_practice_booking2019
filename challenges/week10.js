@@ -73,13 +73,13 @@ const createRange = (start, end, step) => {
 const getScreentimeAlertList = (users, date) => {
   if (users === undefined) throw new Error("users is required");
   if (date === undefined) throw new Error("date is required");
+  if (!isNaN(date) === true) throw new Error("date type required");
 
   let usersOver100Mins = [];
   let sum = 0;
-  //loop for each user
+ 
   users.forEach(function (user) {
 
-    //loop for each users screentime
     (user.screenTime).forEach(function (dailyScreenUsage) {
 
       if (date === dailyScreenUsage.date) {
